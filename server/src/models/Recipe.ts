@@ -6,7 +6,9 @@ const RecipeSchema = new mongoose.Schema({
   steps: { type: [String], required: true },
   category: { type: String, required: true },
   photo: { type: String },
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+}, {
+  // from M18A25
+  timestamps: true
 });
 
 const Recipe = mongoose.model("Recipe", RecipeSchema);

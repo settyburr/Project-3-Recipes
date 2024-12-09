@@ -1,6 +1,7 @@
-import { useState, type FormEvent, type ChangeEvent } from "react";
-import { useMutation } from "@apollo/client";
+import { useState, type FormEvent, type ChangeEvent, useEffect } from "react";
+import { useMutation, useQuery } from "@apollo/client";
 import { ADD_RECIPE } from "../utils/mutations"; // Import the mutation for adding a recipe
+import { GET_RECIPES } from "../utils/queries"; // Import the query for getting all recipes
 import { useNavigate } from "react-router-dom";
 
 const RecipeForm = () => {
@@ -12,7 +13,8 @@ const RecipeForm = () => {
     photo: "",
   });
 
-  const [addRecipe, { error, data }] = useMutation(ADD_RECIPE);
+  const { loading, error, data } = useQuery(GET_RECIPES); // Fetch recipes
+  const [addRecipe, { error: mutationError, data: mutationData }] = useMutation(ADD_RECIPE);
   const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -29,11 +31,17 @@ const RecipeForm = () => {
 
     try {
       const { data } = await addRecipe({
-        variables: { input: { ...formState, ingredients: formState.ingredients.split(","), steps: formState.steps.split(".") } },
+        variables: {
+          input: {
+            ...formState,
+            ingredients: formState.ingredients.split(","),
+            steps: formState.steps.split("."),
+          },
+        },
       });
 
       if (data) {
-        navigate("/recipes");
+        navigate("/recipes"); // Navigate to recipes list after success
       }
     } catch (e) {
       console.error(e);
@@ -46,7 +54,7 @@ const RecipeForm = () => {
         <div className="card">
           <h4 className="card-header bg-dark text-light p-2">Add New Recipe</h4>
           <div className="card-body">
-            {data ? (
+            {mutationData ? (
               <p>
                 Success! Your recipe has been added.{" "}
                 <button onClick={() => navigate("/recipes")} className="btn btn-link">
@@ -103,8 +111,46 @@ const RecipeForm = () => {
               </form>
             )}
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">{error.message}</div>
+            {mutationError && (
+              <div className="my-3 p-3 bg-danger text-white">{mutationError.message}</div>
+            )}
+
+            {/* Table to display all recipes */}
+            <h4 className="mt-4">Your Recipes</h4>
+            {loading ? (
+              <p>Loading recipes...</p>
+            ) : error ? (
+              <p>Error fetching recipes: {error.message}</p>
+            ) : (
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Ingredients</th>
+                    <th>Steps</th>
+                    <th>Photo</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                  {data?.recipes?.map((recipe: any) => (
+                    <tr key={recipe._id}>
+                      <td>{recipe.title}</td>
+                      <td>{recipe.category}</td>
+                      <td>{recipe.ingredients}</td>
+                      <td>{recipe.steps}</td>
+                      <td>
+                        {recipe.photo ? (
+                          <img src={recipe.photo} alt={recipe.title} style={{ width: 100 }} />
+                        ) : (
+                          "No photo"
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             )}
           </div>
         </div>

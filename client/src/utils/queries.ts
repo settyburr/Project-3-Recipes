@@ -58,3 +58,17 @@ export const QUERY_ME = gql`
     }
   }
 `;
+
+
+export const GET_RECIPES = gql`
+  query getRecipes {
+    recipes {
+    title
+    steps
+    photo
+    ingredients
+    category
+  }
+}
+`;
+
