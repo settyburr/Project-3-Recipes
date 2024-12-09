@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type ChangeEvent, useEffect } from "react";
+import { useState, type FormEvent, type ChangeEvent } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_RECIPE } from "../utils/mutations"; // Import the mutation for adding a recipe
 import { GET_RECIPES } from "../utils/queries"; // Import the query for getting all recipes
