@@ -1,4 +1,11 @@
 const typeDefs = `
+
+  type Recipe {
+    id: ID!
+    title: String!
+    image: String!
+  }
+
   type User {
     _id: ID
     username: String
@@ -38,11 +45,7 @@ const typeDefs = `
   }
 
   type Query {
-    users: [User]
-    user(username: String!): User
-    thoughts: [Thought]!
-    thought(thoughtId: ID!): Thought
-    me: User
+  randomRecipes: [Recipe!]!
   }
 
   type Mutation {
