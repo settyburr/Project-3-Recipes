@@ -73,6 +73,9 @@ const resolvers = {
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
     },
+    recipes: async () => {
+      return await Recipe.find().sort({ createdAt: -1 });
+    }
   },
   Mutation: {
     addUser: async (_parent: any, { input }: AddUserArgs) => {
