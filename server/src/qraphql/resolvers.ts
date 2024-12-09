@@ -1,5 +1,6 @@
 import { Thought, User } from '../models/index.js';
 import { signToken, AuthenticationError } from '../utils/auth.js'; 
+import Recipe from "../models/Recipe.js"
 
 // Define types for the arguments
 interface AddUserArgs {
@@ -38,6 +39,14 @@ interface AddCommentArgs {
 interface RemoveCommentArgs {
   thoughtId: string;
   commentId: string;
+}
+
+interface AddRecipeInput {
+  title: string;
+  ingredients: string[];
+  steps: string[];
+  category: string;
+  photo?: string;
 }
 
 const resolvers = {
@@ -167,6 +176,28 @@ const resolvers = {
         );
       }
       throw AuthenticationError;
+    },
+    addRecipe: async (_parent: any, { input }: { input: AddRecipeInput }, context: any) => {
+      // Check if the user is authenticated
+      if (!context.user) {
+        throw new AuthenticationError("You must be logged in to add a recipe.");
+      }
+
+      try {
+        // Create a new recipe document
+        const newRecipe = new Recipe({
+          ...input,
+          userId: context.user.id, // Associate the recipe with the logged-in user
+        });
+
+        // Save the recipe to the database
+        const savedRecipe = await newRecipe.save();
+
+        return savedRecipe;
+      } catch (error) {
+        console.error("Error adding recipe:", error);
+        throw new Error("Failed to add recipe. Please try again.");
+      }
     },
   },
 };
