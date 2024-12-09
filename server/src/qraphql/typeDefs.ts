@@ -53,6 +53,28 @@ const typeDefs = `
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
   }
+    
+  input AddRecipeInput {
+    title: String!
+    ingredients: [String!]!
+    steps: [String!]!
+    category: String!
+    photo: String
+  }
+
+  type Recipe {
+    id: ID!
+    title: String!
+    ingredients: [String!]!
+    steps: [String!]!
+    category: String!
+    photo: String
+    userId: ID!
+  }
+
+  type Mutation {
+    addRecipe(input: AddRecipeInput!): Recipe!
+  } 
 `;
 
 export default typeDefs;
