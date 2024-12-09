@@ -9,3 +9,16 @@ export const QUERY_RANDOM_RECIPES = gql`
     }
   }
 `;
+
+export const GET_RECIPES = gql`
+  query getRecipes {
+    recipes {
+    title
+    steps
+    photo
+    ingredients
+    category
+  }
+}
+`;
+

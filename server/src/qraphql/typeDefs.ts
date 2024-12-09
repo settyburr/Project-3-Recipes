@@ -43,9 +43,25 @@ const typeDefs = `
     token: ID!
     user: User
   }
+    input AddRecipeInput {
+    title: String!
+    ingredients: [String!]!
+    steps: [String!]!
+    category: String!
+    photo: String
+  }
+
+  type Recipe {
+    title: String!
+    ingredients: [String!]!
+    steps: [String!]!
+    category: String!
+    photo: String
+  }
 
   type Query {
   randomRecipes: [Recipe!]!
+    recipes: [Recipe]
   }
 
   type Mutation {
@@ -55,6 +71,7 @@ const typeDefs = `
     addComment(thoughtId: ID!, commentText: String!): Thought
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
+    addRecipe(input: AddRecipeInput!): Recipe!
   }
 `;
 

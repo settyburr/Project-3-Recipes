@@ -9,6 +9,8 @@ import Login from './pages/Login';
 // import SingleThought from './pages/SingleThought';
 // import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
+import RecipeForm from './pages/RecipeForm.js';
+
 
 const router = createBrowserRouter([
   {
@@ -34,6 +36,9 @@ const router = createBrowserRouter([
       }, {
         path: '/thoughts/:thoughtId',
         // element: <SingleThought />
+      }, {
+        path: '/recipes',
+        element: <RecipeForm />
       }
     ]
   },

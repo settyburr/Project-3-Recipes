@@ -2,6 +2,7 @@ import React from 'react';
 import RandomRecipes from '../components/RandomRecipes/index.tsx';
 
 // import { QUERY_THOUGHTS } from '../utils/queries.ts';
+// import { QUERY_THOUGHTS } from '../utils/queries.ts';
 
 const Home: React.FC = () => {
   return (
@@ -11,4 +12,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+// export default Home;

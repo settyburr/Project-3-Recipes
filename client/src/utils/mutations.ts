@@ -54,3 +54,15 @@ export const ADD_COMMENT = gql`
     }
   }
 `;
+
+export const ADD_RECIPE = gql`
+  mutation AddRecipe($input: AddRecipeInput!) {
+    addRecipe(input: $input) {
+      title
+      ingredients
+      steps
+      category
+      photo
+    }
+  }
+`;
