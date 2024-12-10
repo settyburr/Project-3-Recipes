@@ -48,9 +48,6 @@ const Profile = () => {
     alignItems: 'center',
     justifyContent: 'flex-start',
   };
-  // const pStyle = {
-  //   marginRight: '20px', 
-  // }
   const followersContainer = {
     display: 'flex',
     alignItems: 'center',
@@ -73,10 +70,10 @@ listStyleType: 'none',
   marginTop: '50px'
 }
 const imageStyle = {
-  width: '200px',        // Adjust the width to your desired size
-  height: '200px',       // Set the height equal to width for a perfect circle
-  borderRadius: '50%',   // Make the image circular
-  border: '3px solid #000', // Adds a black border around the circle
+  width: '200px',        
+  height: '200px',       
+  borderRadius: '50%',  
+  border: '3px solid #000', 
   marginBottom: '50px',
   margintop: '20px'
 }
@@ -140,11 +137,6 @@ const verified = {
     );
   }
 
-  return (
-    <div>
-      <h1>this works</h1>
-    </div>
-  );
 };
 
 export default Profile;
