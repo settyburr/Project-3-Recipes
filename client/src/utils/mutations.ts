@@ -58,7 +58,6 @@ export const ADD_COMMENT = gql`
 export const ADD_RECIPE = gql`
   mutation AddRecipe($input: AddRecipeInput!) {
     addRecipe(input: $input) {
-      id
       title
       ingredients
       steps
@@ -79,3 +78,6 @@ export const GET_USER_PROFILE = gql`
     }
   }
 `;
+
+`;
+

@@ -3,14 +3,18 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 
 import App from './App.jsx';
-// import Home from './pages/Home';
+import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 // import SingleThought from './pages/SingleThought';
-import Profile from './pages/Profile';
+// import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
 import RecipeForm from './pages/RecipeForm.js';
+
 // import Random from './pages/Random.js'
+
+import SingleRecipe from './pages/SingleRecipe.js';
+
 
 
 const router = createBrowserRouter([
@@ -21,13 +25,14 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        // element: <Home />
+        element: <Home />
       }, {
         path: '/login',
         element: <Login />
       }, {
         path: '/signup',
         element: <Signup />
+
       },
        {
         path: '/profiles/:username',
@@ -44,6 +49,19 @@ const router = createBrowserRouter([
       // },
        {
         path: '/recipe',
+
+      }, {
+        // path: '/profiles/:username',
+        // element: <Profile />
+      }, {
+        // path: '/me',
+        // element: <Profile />
+      }, {
+        path: '/recipes/:recipeId',
+        element: <SingleRecipe />
+      }, {
+        path: '/recipes',
+
         element: <RecipeForm />
       }
     ]
