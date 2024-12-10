@@ -1,4 +1,8 @@
 const typeDefs = `
+type Query {
+getUserProfile(username: String!): User
+}
+
   type User {
     _id: ID
     username: String

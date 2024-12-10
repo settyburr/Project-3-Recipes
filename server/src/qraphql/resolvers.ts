@@ -57,13 +57,11 @@ const resolvers = {
     user: async (_parent: any, { username }: UserArgs) => {
       return User.findOne({ username }).populate('thoughts');
     },
-    getUserProfile: async (_, { username }) => {
-      const user = await User.findOne({ username: username }); // or however you query the user
-      if (!user) {
-        return null; // Or throw an error depending on your design
-      }
-      return user;
+
+    getUserProfile: async (_parent: any, { username }: UserArgs) => {
+      return await User.findOne({ username });
     },
+    
     thoughts: async () => {
       return await Thought.find().sort({ createdAt: -1 });
     },

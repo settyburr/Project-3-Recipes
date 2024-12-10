@@ -57,12 +57,9 @@ export const QUERY_ME = gql`
 
 export const GET_USER_PROFILE = gql`
   query getUserProfile($username: String!) {
-    user(username: $username) {
-    
+    getUserProfile(username: $username) {
       username
       email
-      profilePhoto
-      createdAt
     }
   }
 `;
