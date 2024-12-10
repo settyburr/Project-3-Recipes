@@ -1,16 +1,20 @@
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 
 import App from './App.jsx';
-// import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
-// import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
 import RecipeForm from './pages/RecipeForm.js';
+import FeaturedRecipes from './pages/FeaturedRecipe';
 
+// Create Apollo Client
+const client = new ApolloClient({
+  uri: 'http://localhost:3001/graphql',
+  cache: new InMemoryCache(),
+});
 
 const router = createBrowserRouter([
   {
@@ -20,7 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        // element: <Home />
+        element: <FeaturedRecipes />
       }, {
         path: '/login',
         element: <Login />
@@ -34,11 +38,11 @@ const router = createBrowserRouter([
         path: '/me',
         element: <Profile />
       }, {
-        path: '/thoughts/:thoughtId',
-        // element: <SingleThought />
-      }, {
         path: '/recipes',
         element: <RecipeForm />
+      }, {
+        path: '/featured',
+        element: <FeaturedRecipes />
       }
     ]
   },
@@ -46,5 +50,9 @@ const router = createBrowserRouter([
 
 const rootElement = document.getElementById('root');
 if (rootElement) {
-  ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
+  ReactDOM.createRoot(rootElement).render(
+    <ApolloProvider client={client}>
+      <RouterProvider router={router} />
+    </ApolloProvider>
+  );
 }
