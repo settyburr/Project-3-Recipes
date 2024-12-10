@@ -1,16 +1,17 @@
-import mongoose from "mongoose";
+import mongoose, { Schema, Document } from 'mongoose';
 
-const RecipeSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  ingredients: { type: [String], required: true },
-  steps: { type: [String], required: true },
-  category: { type: String, required: true },
-  photo: { type: String },
-}, {
-  // from M18A25
-  timestamps: true
+interface IRecipe extends Document {
+    spoonacularId: number;
+    title: string;
+    image: string;
+}
+
+const RecipeSchema: Schema = new Schema({
+    spoonacularId: { type: Number, required: true, unique: true },
+    title: { type: String, required: true },
+    image: { type: String, required: true },
 });
 
-const Recipe = mongoose.model("Recipe", RecipeSchema);
+const Recipe = mongoose.model<IRecipe>('Recipe', RecipeSchema);
 
 export default Recipe;

@@ -1,6 +1,8 @@
-import { Thought, User } from '../models/index.js';
-import { signToken, AuthenticationError } from '../utils/auth.js'; 
-import Recipe from "../models/Recipe.js"
+// import Recipe from '../models/Recipe.js';
+import { getRandomRecipe, getRecipe } from '../utils/api.js';
+import { AuthenticationError, signToken } from '../utils/auth.js'; 
+import Recipe from "../models/Recipe.js";
+import User from '../models/User.js';
 
 // Define types for the arguments
 interface AddUserArgs {
@@ -20,26 +22,6 @@ interface UserArgs {
   username: string;
 }
 
-interface ThoughtArgs {
-  thoughtId: string;
-}
-
-interface AddThoughtArgs {
-  input:{
-    thoughtText: string;
-    thoughtAuthor: string;
-  }
-}
-
-interface AddCommentArgs {
-  thoughtId: string;
-  commentText: string;
-}
-
-interface RemoveCommentArgs {
-  thoughtId: string;
-  commentId: string;
-}
 
 interface AddRecipeInput {
   title: string;
@@ -51,33 +33,82 @@ interface AddRecipeInput {
 
 const resolvers = {
   Query: {
+    randomRecipes: async () => {
+      
+      try {
+        const recipes = await getRandomRecipe(6);
+
+        if (!recipes) {
+          throw new Error('No recipe found.');
+        }
+        // console.log(recipes)
+        return recipes;
+
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch and save recipe');
+      }
+    },
+
+    recipe: async (_parent: any, { recipeId }: any) => {
+      
+      try {
+        const recipe = await getRecipe(recipeId);
+
+        if (!recipe) {
+          throw new Error('No recipe found.');
+        }
+        // console.log(recipe)
+        return recipe;
+
+      } catch (error) {
+        console.error(error);
+        throw new Error('Failed to fetch and save recipe');
+      }
+    },
+
+    recipes: async () => {
+      return await Recipe.find().sort({ createdAt: -1 });
+    },
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find().populate('recipes');
     },
     user: async (_parent: any, { username }: UserArgs) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username }).populate('recipes');
     },
-    thoughts: async () => {
-      return await Thought.find().sort({ createdAt: -1 });
-    },
-    thought: async (_parent: any, { thoughtId }: ThoughtArgs) => {
-      return await Thought.findOne({ _id: thoughtId });
-    },
-    // Query to get the authenticated user's information
-    // The 'me' query relies on the context to check if the user is authenticated
     me: async (_parent: any, _args: any, context: any) => {
       // If the user is authenticated, find and return the user's information along with their thoughts
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id }).populate('recipes');
       }
       // If the user is not authenticated, throw an AuthenticationError
       throw new AuthenticationError('Could not authenticate user.');
     },
-    recipes: async () => {
-      return await Recipe.find().sort({ createdAt: -1 });
-    }
   },
   Mutation: {
+  
+    addRecipe: async (_parent: any, { input }: { input: AddRecipeInput }, context: any) => {
+      // Check if the user is authenticated
+      if (!context.user) {
+        throw new AuthenticationError("You must be logged in to add a recipe.");
+      }
+
+      try {
+        // Create a new recipe document
+        const newRecipe = new Recipe({
+          ...input,
+          userId: context.user.id, // Associate the recipe with the logged-in user
+        });
+
+        // Save the recipe to the database
+        const savedRecipe = await newRecipe.save();
+
+        return savedRecipe;
+      } catch (error) {
+        console.error("Error adding recipe:", error);
+        throw new Error("Failed to add recipe. Please try again.");
+      }
+    },
     addUser: async (_parent: any, { input }: AddUserArgs) => {
       // Create a new user with the provided username, email, and password
       const user = await User.create({ ...input });
@@ -111,96 +142,6 @@ const resolvers = {
     
       // Return the token and the user
       return { token, user };
-    },
-    addThought: async (_parent: any, { input }: AddThoughtArgs, context: any) => {
-      if (context.user) {
-        const thought = await Thought.create({ ...input });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
-        );
-
-        return thought;
-      }
-      throw AuthenticationError;
-      ('You need to be logged in!');
-    },
-    addComment: async (_parent: any, { thoughtId, commentText }: AddCommentArgs, context: any) => {
-      if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $addToSet: {
-              comments: { commentText, commentAuthor: context.user.username },
-            },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      throw AuthenticationError;
-    },
-    removeThought: async (_parent: any, { thoughtId }: ThoughtArgs, context: any) => {
-      if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
-        });
-
-        if(!thought){
-          throw AuthenticationError;
-        }
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
-        );
-
-        return thought;
-      }
-      throw AuthenticationError;
-    },
-    removeComment: async (_parent: any, { thoughtId, commentId }: RemoveCommentArgs, context: any) => {
-      if (context.user) {
-        return Thought.findOneAndUpdate(
-          { _id: thoughtId },
-          {
-            $pull: {
-              comments: {
-                _id: commentId,
-                commentAuthor: context.user.username,
-              },
-            },
-          },
-          { new: true }
-        );
-      }
-      throw AuthenticationError;
-    },
-    addRecipe: async (_parent: any, { input }: { input: AddRecipeInput }, context: any) => {
-      // Check if the user is authenticated
-      if (!context.user) {
-        throw new AuthenticationError("You must be logged in to add a recipe.");
-      }
-
-      try {
-        // Create a new recipe document
-        const newRecipe = new Recipe({
-          ...input,
-          userId: context.user.id, // Associate the recipe with the logged-in user
-        });
-
-        // Save the recipe to the database
-        const savedRecipe = await newRecipe.save();
-
-        return savedRecipe;
-      } catch (error) {
-        console.error("Error adding recipe:", error);
-        throw new Error("Failed to add recipe. Please try again.");
-      }
     },
   },
 };

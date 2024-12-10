@@ -1,64 +1,14 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
-      _id
-      username
-      email
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-      }
-    }
+export const QUERY_RANDOM_RECIPES = gql`
+  query GetRandomRecipes {
+    randomRecipes {
+    id
+    title
+    image
+  }
   }
 `;
-
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-    }
-  }
-`;
-
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
-      _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
-    }
-  }
-`;
-
-export const QUERY_ME = gql`
-  query me {
-    me {
-      _id
-      username
-      email
-      thoughts {
-        _id
-        thoughtText
-        thoughtAuthor
-        createdAt
-      }
-    }
-  }
-`;
-
 
 export const GET_RECIPES = gql`
   query getRecipes {
@@ -72,3 +22,45 @@ export const GET_RECIPES = gql`
 }
 `;
 
+export const QUERY_USER = gql`
+  query user($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      recipes {
+        spoonacularId
+        title
+        image
+      }
+    }
+  }
+`;
+
+export const QUERY_ME = gql`
+  query me {
+    me {
+      _id
+      username
+      email
+      recipes {
+        spoonacularId
+        title
+        image
+      }
+    }
+  }
+`;
+
+export const QUERY_RECIPE = gql`
+  query Recipe($recipeId: Int) {
+  recipe(recipeId: $recipeId) {
+      id
+      title
+      image
+      extendedIngredients
+      instructions
+      cuisines
+    }
+  }
+`;

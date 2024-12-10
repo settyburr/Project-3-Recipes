@@ -5,3 +5,11 @@ declare namespace Express {
     };
   }
 }
+
+declare module 'spoonacular' {
+  export class SpoonacularClient {
+    constructor(apiKey: string);
+
+    getRandomRecipes(params: { number: number }): Promise<{ recipes: Array<any> }>;
+  }
+}

@@ -19,7 +19,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/node": "^22.10.1",
     "concurrently": "^8.2.2",
     "wait-on": "^7.2.0"
+  },
+  "dependencies": {
+    "mongodb": "^6.11.0",
+    "spoonacular": "^2.0.1"
   }
 }

@@ -1,0 +1,91 @@
+/* General header styles */
+.recipe-header {
+    background-color: #e1f5d0; /* Light green background */
+    color: #2e4a32; /* Dark green text color */
+    font-family: 'Arial', sans-serif;
+    border-bottom: 2px solid #8b4513; /* Subtle wood color border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .recipe-header h1 {
+    font-family: 'Lobster', sans-serif;
+    font-size: 2.5rem;
+    color: #2e4a32; /* Dark green for the title */
+  }
+  
+  .recipe-header p {
+    color: #5a6e47; /* Muted green for the subtitle */
+  }
+  
+  .recipe-header .container {
+    max-width: 1200px;
+    padding: 0 15px;
+  }
+  
+  /* Button styles */
+  .btn {
+    font-size: 1.1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-profile {
+    background-color: #4caf50; /* Green for profile button */
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-profile:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-logout {
+    background-color: #ff7043; /* Wood tone for logout button */
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-logout:hover {
+    background-color: #ff5722;
+  }
+  
+  .btn-recipe-form {
+    background-color: #9e9d24; /* Earthy yellow-green for recipe form */
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-recipe-form:hover {
+    background-color: #8b8b1f;
+  }
+  
+  .btn-login {
+    background-color: #81c784; /* Light green for login */
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-login:hover {
+    background-color: #66bb6a;
+  }
+  
+  .btn-signup {
+    background-color: #aed581; /* Light green for signup */
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-signup:hover {
+    background-color: #8bc34a;
+  }
+  
+  /* Mobile-friendly adjustments */
+  @media (max-width: 768px) {
+    .recipe-header h1 {
+      font-size: 2rem; /* Smaller font size on mobile */
+    }
+  
+    .recipe-header p {
+      font-size: 1rem;
+    }
+  }
