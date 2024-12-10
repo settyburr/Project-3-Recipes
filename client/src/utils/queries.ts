@@ -6,11 +6,7 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      thoughts {
-        _id
-        thoughtText
-        createdAt
-      }
+   
     }
   }
 `;
@@ -55,6 +51,18 @@ export const QUERY_ME = gql`
         thoughtAuthor
         createdAt
       }
+    }
+  }
+`;
+
+export const GET_USER_PROFILE = gql`
+  query getUserProfile($username: String!) {
+    user(username: $username) {
+    
+      username
+      email
+      profilePhoto
+      createdAt
     }
   }
 `;

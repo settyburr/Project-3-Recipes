@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
 import RecipeForm from './pages/RecipeForm.js';
+// import Random from './pages/Random.js'
 
 
 const router = createBrowserRouter([
@@ -27,13 +28,21 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
-      }, {
+      },
+       {
         path: '/profiles/:username',
         element: <Profile />
-      }, {
-        path: '/thoughts/:thoughtId',
-        // element: <SingleThought />
-      }, {
+      }, 
+      {
+        path: '/me',
+        element: <Profile />
+      },
+      
+      // {
+      //   path: '/random',
+      //   element: <Random /> 
+      // },
+       {
         path: '/recipe',
         element: <RecipeForm />
       }

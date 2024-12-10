@@ -18,14 +18,20 @@ const Profile = () => {
   const user = data?.me || data?.user || {};
   
   // This if condition checks if the user is logged in and if the logged-in user's username matches the userParam.
-  if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+  if (Auth.loggedIn() && Auth.getProfile()?.data?.username === userParam) {
     // If the condition is true, it navigates to the "/me" route, which is likely the user's profile page.
-    return <Navigate to="/me" />;
+    return <Navigate replace to="/me" />;
   }
 
   if (loading) {
     return <div>Loading...</div>;
   }
+console.log("Query Data", data); //testing if the queries returns a user
+console.log("Is user logged in?", Auth.loggedIn()); // testing if user logged in is true or false
+console.log("User profile:", Auth.getProfile());
+console.log("User parameter:", userParam);
+
+
 
   if (!user?.username) {
     return (
@@ -36,30 +42,30 @@ const Profile = () => {
     );
   }
 
-  // return (
-  //   <div>
-  //     <div className="flex-row justify-center mb-3">
-  //       <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-  //         Viewing {userParam ? `${user.username}'s` : 'your'} profile.
-  //       </h2>
+  return (
+    <div>
+      <div className="flex-row justify-center mb-3">
+        <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
+          Viewing {userParam ? `${user.username}'s` : 'your'} profile.
+        </h2>
 
-  //       <div className="col-12 col-md-10 mb-5">
-  //         <ThoughtList
-  //           thoughts={user.thoughts}
-  //           title={`${user.username}'s thoughts...`}
-  //         />
-  //       </div>
-  //       {!userParam && (
-  //         <div
-  //           className="col-12 col-md-10 mb-3 p-3"
-  //           style={{ border: '1px dotted #1a1a1a' }}
-  //         >
-  //           <ThoughtForm />
-  //         </div>
-  //       )}
-  //     </div>
-  //   </div>
-  // );
+        <div className="col-12 col-md-10 mb-5">
+          {/* <ThoughtList
+            thoughts={user.thoughts}
+            title={`${user.username}'s thoughts...`}
+          /> */}
+        </div>
+        {/* {!userParam && (
+          <div
+            className="col-12 col-md-10 mb-3 p-3"
+            style={{ border: '1px dotted #1a1a1a' }}
+          >
+            <ThoughtForm />
+          </div>
+        )} */}
+      </div>
+    </div>
+  );
 };
 
 export default Profile;
