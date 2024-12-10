@@ -1,7 +1,5 @@
 const typeDefs = `
-type Query {
-getUserProfile(username: String!): User
-}
+
 
   type User {
     _id: ID
@@ -44,6 +42,7 @@ getUserProfile(username: String!): User
   type Query {
     users: [User]
     user(username: String!): User
+    getUserProfile(username: String!): User
     thoughts: [Thought]!
     thought(thoughtId: ID!): Thought
     me: User

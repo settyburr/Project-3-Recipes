@@ -1,25 +1,27 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-// import {dog} from '../assets/dog.jpg'
+
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
 import Auth from '../utils/auth';
 
 const Profile = () => {
-  const { username: userParam } = useParams();
+  // const { username: userParam } = useParams();
 
-  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-    variables: { username: userParam },
-  });
+  // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  //   variables: { username: userParam },
+  // });
+
+  const { loading, data } = useQuery( QUERY_ME);
 
   const user = data?.me || data?.user || {};
   console.log(user)
   // This if condition checks if the user is logged in and if the logged-in user's username matches the userParam.
-  if (Auth.loggedIn() && Auth.getProfile()?.data?.username === userParam) {
-    // If the condition is true, it navigates to the "/me" route, which is likely the user's profile page.
-    return <Navigate replace to="/me" />;
-  }
+  // if (Auth.loggedIn() && Auth.getProfile()?.data?.username === userParam) {
+  //   // If the condition is true, it navigates to the "/me" route, which is likely the user's profile page.
+  //   return <Navigate replace to="/me" />;
+  // }
 
   if (loading) {
     return <div>Loading...</div>;
@@ -58,7 +60,7 @@ const Profile = () => {
   };
   const recipe = {
     textAlign: 'center',
-    marginTop: '200px'
+    marginTop: '100px'
   }
 const cook = {
   fontSize: '15px',
@@ -70,14 +72,48 @@ listStyleType: 'none',
   textAlign: 'center',
   marginTop: '50px'
 }
-  if (!user?.username) {
+const imageStyle = {
+  width: '200px',        // Adjust the width to your desired size
+  height: '200px',       // Set the height equal to width for a perfect circle
+  borderRadius: '50%',   // Make the image circular
+  border: '3px solid #000', // Adds a black border around the circle
+  marginBottom: '50px',
+  margintop: '20px'
+}
+const imageWrapperStyle = {
+  display: 'flex',         
+  alignItems: 'center',    
+  gap: '10px',             
+}
+const verified = {
+  width: '50px',         
+  height: '50px',        
+};
+// const bannerStyle = {
+//   width: '100vw',             
+//   height: '200px',          
+//   // backgroundImage: 'url(/images/banner.jpg)', 
+//   backgroundColor: 'blue',
+//   backgroundSize: 'cover',  
+//   backgroundPosition: 'center', 
+//   margin: '0px',      
+// };
+  if (!user?.me) {
     return (
+      // <div style = {bannerStyle}>
       <div>
         <h1>
-          Hello {user.username}
+        <div style = {imageWrapperStyle}>
+       {user.username}
+        </div>
+        <img src = "/images/verified.jpg" style ={verified} />
+        
         </h1>
         <p><strong>Email:</strong> {user.email || 'Email not provided'}</p>
-        <img src="/assets/dog.jpg" />
+     
+       <img src ="/images/rat2.jpg" style = {imageStyle} />
+   
+      
         <div style={buttonContainer}>
           <button style={button}>Follow</button>
           <button style={button}>Message</button>
@@ -92,16 +128,14 @@ listStyleType: 'none',
 
         <h2 style= {recipe} >You can check out some of our favorite recipes here!</h2>
       
-        <li style = {food}>Cajun Pasta</li>
-        <li style = {food}>Spaghetti Carbonara</li>
-        <li style = {food}>Pizza Margherita</li>
-        <li style = {food}>Pad Thai</li>
-        <li style = {food}>Gumbo</li>
-        <li style = {food}>Garfield Lasagna</li>
+        <li style = {food}>Cajun Pasta 🍴</li>
+        <li style = {food}>Spaghetti Carbonara 🍴</li>
+        <li style = {food}>Pizza Margherita 🍴</li>
+        <li style = {food}>Pad Thai 🍴</li>
+        <li style = {food}>Gumbo 🍴</li>
+        <li style = {food}>Garfield Lasagna 🍴</li>
        
       </div>
-
-
 
     );
   }
