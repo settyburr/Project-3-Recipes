@@ -5,6 +5,7 @@ const typeDefs = `
     email: String
     password: String
     thoughts: [Thought]!
+    recipes: [Recipe]     # Add this to link recipes to users
   }
 
   type Thought {
@@ -21,6 +22,27 @@ const typeDefs = `
     createdAt: String
   }
 
+  type Recipe {
+    _id: ID!
+    title: String!
+    ingredients: [String!]!
+    steps: [String!]!
+    category: String!
+    photo: String
+    cookTime: String
+    difficulty: String
+    rating: Float
+    createdBy: User      # Add this to link recipe to user
+    createdAt: String
+    updatedAt: String
+  }
+
+  enum Difficulty {
+    EASY
+    MEDIUM
+    HARD
+  }
+
   input ThoughtInput {
     thoughtText: String!
     thoughtAuthor: String!
@@ -31,25 +53,30 @@ const typeDefs = `
     email: String!
     password: String!
   }
-  
+
+  input AddRecipeInput {
+    title: String!
+    ingredients: [String!]!
+    steps: [String!]!
+    category: String!
+    photo: String
+    cookTime: String
+    difficulty: Difficulty
+  }
+
+  input UpdateRecipeInput {
+    title: String
+    ingredients: [String!]
+    steps: [String!]
+    category: String
+    photo: String
+    cookTime: String
+    difficulty: Difficulty
+  }
+
   type Auth {
     token: ID!
     user: User
-  }
-    input AddRecipeInput {
-    title: String!
-    ingredients: [String!]!
-    steps: [String!]!
-    category: String!
-    photo: String
-  }
-
-  type Recipe {
-    title: String!
-    ingredients: [String!]!
-    steps: [String!]!
-    category: String!
-    photo: String
   }
 
   type Query {
@@ -59,6 +86,10 @@ const typeDefs = `
     thought(thoughtId: ID!): Thought
     me: User
     recipes: [Recipe]
+    recipe(id: ID!): Recipe
+    getFeaturedRecipes: [Recipe]!          # New query for featured recipes
+    getRecipesByCategory(category: String!): [Recipe]!
+    searchRecipes(searchTerm: String!): [Recipe]!
   }
 
   type Mutation {
@@ -69,6 +100,9 @@ const typeDefs = `
     removeThought(thoughtId: ID!): Thought
     removeComment(thoughtId: ID!, commentId: ID!): Thought
     addRecipe(input: AddRecipeInput!): Recipe!
+    updateRecipe(id: ID!, input: UpdateRecipeInput!): Recipe!
+    deleteRecipe(id: ID!): Recipe!
+    rateRecipe(id: ID!, rating: Float!): Recipe!
   }
 `;
 
