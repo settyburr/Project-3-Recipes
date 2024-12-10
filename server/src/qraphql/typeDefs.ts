@@ -1,10 +1,16 @@
 const typeDefs = `
 
+type Query {
+getUserProfile(username: String!): User
+}
+
+
   type Recipe {
     id: ID
     title: String!
     image: String!
   }
+
 
   type User {
     _id: ID

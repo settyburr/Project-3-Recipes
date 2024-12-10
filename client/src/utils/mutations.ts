@@ -66,3 +66,18 @@ export const ADD_RECIPE = gql`
     }
   }
 `;
+
+export const GET_USER_PROFILE = gql`
+  query getUserProfile($username: String!) {
+    user(username: $username) {
+      _id
+      username
+      email
+      profilePhoto
+      createdAt
+    }
+  }
+`;
+
+`;
+
