@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { type MouseEvent} from 'react';
 import Auth from '../../utils/auth';
+import '../../styling/header.css';
 
 const Header = () => {
   const logout = (event: MouseEvent<HTMLButtonElement>) => {
@@ -9,11 +10,11 @@ const Header = () => {
     Auth.logout();
   };
   return (
-    <header className="bg-primary text-light mb-4 py-3 flex-row align-center">
+    <header className="recipe-header mb-4 py-3 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
         <div>
           <Link className="text-light" to="/">
-            <h1 className="m-0">Recipe</h1>
+            <h1 className="m-0">Recipe Rack</h1>
           </Link>
           <p className="m-0">LETS GET COOKIN!!</p>
         </div>
@@ -21,23 +22,23 @@ const Header = () => {
           {/* Checking if the user is logged in to conditionally render profile link and logout button */}
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/me">
+              <Link className="btn btn-lg btn-profile m-2" to="/me">
                 {/* Retrieving the logged-in user's profile to display the username */}
                 {Auth.getProfile().data.username}'s profile
               </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
+              <button className="btn btn-lg btn-logout m-2" onClick={logout}>
                 Logout
               </button>
-              <Link className="btn btn-lg btn-light m-2" to="/recipes">
+              <Link className="btn btn-lg btn-recipe-form m-2" to="/recipes">
                 Recipe Form 
               </Link>
             </>
           ) : (
             <>
-              <Link className="btn btn-lg btn-info m-2" to="/login">
+              <Link className="btn btn-lg btn-login m-2" to="/login">
                 Login
               </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
+              <Link className="btn btn-lg btn-signup m-2" to="/signup">
                 Signup
               </Link>
             </>

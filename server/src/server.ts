@@ -6,6 +6,7 @@ import { ApolloServer } from '@apollo/server';// Note: Import from @apollo/serve
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './qraphql/index.js';
 import { authenticateToken } from './utils/auth.js';
+import routes from './routes/index.js';
 
 const server = new ApolloServer({
   typeDefs,
@@ -36,6 +37,8 @@ const startApolloServer = async () => {
     });
   }
 
+  app.use(routes);
+  
   app.listen(PORT, () => {
     console.log(`API server running on port ${PORT}!`);
     console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);

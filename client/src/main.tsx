@@ -10,6 +10,7 @@ import Login from './pages/Login';
 // import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
 import RecipeForm from './pages/RecipeForm.js';
+import SingleRecipe from './pages/SingleRecipe.js';
 
 
 const router = createBrowserRouter([
@@ -34,8 +35,8 @@ const router = createBrowserRouter([
         // path: '/me',
         // element: <Profile />
       }, {
-        path: '/thoughts/:thoughtId',
-        // element: <SingleThought />
+        path: '/recipes/:recipeId',
+        element: <SingleRecipe />
       }, {
         path: '/recipes',
         element: <RecipeForm />

@@ -12,6 +12,21 @@ async function getRandomRecipe(numberOfRecipes: number) {
     throw error;
   }
 }
+
+async function getRecipe(recipeId: string) {
+  console.log(recipeId)
+  
+  try {
+    const result = await axios.get(
+      `https://api.spoonacular.com/recipes/${recipeId}/information?apiKey=${apiKey}`
+    );
+    console.log(result.data);
+    return result?.data;
+  } catch (error) {
+    console.error("Error fetching random recipe:", error);
+    throw error;
+  }
+}
 // .then(response => console.log(response.data))
 // .catch(error => console.error(error));
 
@@ -46,4 +61,4 @@ async function getRandomRecipe(numberOfRecipes: number) {
 //   }
 // }
 
-export default getRandomRecipe
+export { getRandomRecipe, getRecipe }

@@ -1,5 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { QUERY_RANDOM_RECIPES } from '../../utils/queries';
+import { Link } from 'react-router-dom';
+import '../../styling/random-recipes.css';
 
 interface Recipe {
     id: number;
@@ -10,7 +12,7 @@ interface Recipe {
 const RandomRecipes: React.FC = () => {
 
     const { loading, error, data } = useQuery<{ randomRecipes: Recipe[] }>(QUERY_RANDOM_RECIPES);
-
+    console.log(data);
     const recipes = data?.randomRecipes || [];
     
     if (loading) {
@@ -24,10 +26,10 @@ const RandomRecipes: React.FC = () => {
         <div className='random-recipes'>
             {recipes.map((recipe) => (
                 <div className='recipe-card' key={recipe.id}>
-                    <a href={`https://spoonacular.com/recipes/${recipe.id}`} target="_blank" rel="noopener noreferrer">
+                    <Link to={`/recipes/${recipe.id}`} >
                         <img src={recipe.image} alt={recipe.title} />
                         <h3>{recipe.title}</h3>  
-                    </a>
+                    </Link>
                 </div>
             ))}
         </div>
