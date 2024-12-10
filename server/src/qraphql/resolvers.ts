@@ -70,18 +70,8 @@ const resolvers = {
     recipes: async () => {
       return await Recipe.find().sort({ createdAt: -1 });
     },
-
-
-    getUserProfile: async (_parent: any, { username }: UserArgs) => {
-      return await User.findOne({ username });
-    },
-    
-    thoughts: async () => {
-      return await Thought.find().sort({ createdAt: -1 });
-
     users: async () => {
       return User.find().populate('recipes');
-
     },
     user: async (_parent: any, { username }: UserArgs) => {
       return User.findOne({ username }).populate('recipes');
