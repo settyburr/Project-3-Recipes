@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type ChangeEvent } from "react";
+import { useState, type FormEvent, type ChangeEvent, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
 import { ADD_RECIPE, UPDATE_RECIPE } from "../utils/mutations"; // Import the mutation for updating a recipe
 import { GET_RECIPES } from "../utils/queries"; // Import the query for getting all recipes
@@ -27,10 +27,10 @@ const RecipeForm = () => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
-    setFormState({
-      ...formState,
+    setFormState((prevState) => ({
+      ...prevState,
       [name]: value,
-    });
+    }));
   };
 
   const handleFormSubmit = async (event: FormEvent) => {
@@ -38,15 +38,16 @@ const RecipeForm = () => {
 
     try {
       if (editingRecipeId) {
+        console.log("Panda")
         // Update existing recipe
         await updateRecipe({
-          variables: {
-            id: editingRecipeId,
-            input: {
-              ...formState,
-              ingredients: formState.ingredients.split(","),
-              steps: formState.steps.split("."),
-            },
+          variables: { 
+              id: editingRecipeId,
+              title: formState.title,
+              extendedIngredients: formState.ingredients.split(","),
+              instructions: formState.steps,
+              cuisines: formState.category,
+              image: formState.photo
           },
         });
         setEditingRecipeId(null);
@@ -66,27 +67,35 @@ const RecipeForm = () => {
         });
       }
 
-      setFormState({
-        title: "",
-        ingredients: "",
-        steps: "",
-        category: "",
-        photo: "",
-      });
+      // setFormState({
+      //   title: "",
+      //   ingredients: "",
+      //   steps: "",
+      //   category: "",
+      //   photo: "",
+      // });
       navigate("/recipes");
     } catch (e) {
       console.error(e);
     }
   };
 
+  useEffect(() => {
+    console.log("Editing Recipe ID:", editingRecipeId);
+    console.log(formState)
+  }, [formState, editingRecipeId]);
+  
+
   const handleEditClick = (recipe: any) => {
-    setEditingRecipeId(recipe._id);
+    console.log(recipe);
+    const selectedId = recipe.id;
+    setEditingRecipeId(selectedId);
     setFormState({
       title: recipe.title,
-      ingredients: recipe.ingredients.join(","),
-      steps: recipe.steps.join("."),
-      category: recipe.category,
-      photo: recipe.photo || "",
+      ingredients: recipe.extendedIngredients.join(","),
+      steps: recipe.instructions,
+      category: recipe.cuisines,
+      photo: recipe.image || "",
     });
   };
 

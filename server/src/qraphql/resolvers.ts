@@ -32,6 +32,15 @@ interface AddRecipeInput {
   
 }
 
+interface updateRecipeArgs {
+  title?: string;
+  instructions?: string[];
+  extendedIngredients?: string[];
+  cuisines?: string;
+  image?: string;
+  id: string
+}
+
 const resolvers = {
   Query: {
     randomRecipes: async () => {
@@ -158,7 +167,26 @@ const resolvers = {
       // Return the token and the user
       return { token, user };
     },
-  },
-};
+    
+    updateRecipe: async (_parent: any, { title, instructions, extendedIngredients, cuisines, image, id }: updateRecipeArgs, context: any)  => {
+      if (context.user) {
+        return await Recipe.findOneAndUpdate(
+          { _id: id },
+          {
+             title: title,
+             instructions: instructions,
+             extendedIngredients: extendedIngredients,
+             cuisines: cuisines,
+             image: image,
+          },
+          {
+            new: true,
+          }
+        );
+      }
+      throw new AuthenticationError('Could not authenticate user.');
+    }
+}};
+
 
 export default resolvers;
