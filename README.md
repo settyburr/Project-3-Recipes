@@ -53,9 +53,9 @@ Recipe Rack is an interactive and user-focused MERN stack application that provi
    - Create a `.env` file in the root and the client directory.
    - Add the required variables for database connection and API keys.
 
-4. Start the development server:
+4. Start the application:
    ```bash
-   npm run develop
+   npm run start:dev
    ```
    This will concurrently run the front-end and back-end servers.
 
@@ -71,18 +71,18 @@ Recipe Rack is an interactive and user-focused MERN stack application that provi
 
 ## Screenshots
 ### Homepage
-![Homepage displaying random recipes](path/to/screenshot-homepage.png)
+![Homepage displaying random recipes](./client/src/assets/screenshot-home.png)
 
 ### Recipe Details
-![Recipe details page](path/to/screenshot-recipe-details.png)
+![Recipe details page](./client/src/assets/screenshot-details.png)
 
-### Saved Recipes
-![Saved recipes management page](path/to/screenshot-saved-recipes.png)
+### Recipe Form
+![Recipe form page](./client/src/assets/screenshot-addnew.png)
 
 ---
 
 ## Deployed Application
-The live application can be accessed [here](https://recipe-rack-render-url.com).
+The live application can be accessed [here](https://project-3-recipes.onrender.com).
 
 ---
 
@@ -118,10 +118,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 ## Contact
-- Brandon Lanes - brandonlanes@gmail.com
-- Seth Burrow - 
-- Owen Gayle - owengayle19@gmail.com
-- Joshua Woods - 
+- Brandon Lanes - brandonlanes@gmail.com - Github username: BrandonLanes
+- Seth Burrow - sethburrow01@gmail.com - Github username: settyburr
+- Owen Gayle - owengayle19@gmail.com - Github username: owengx
+- Joshua Woods - jw434846@gmail.com - Github username: Jaywoods94
 
 [Github Repository](https://github.com/settyburr/Project-3-Recipes)
 

@@ -89,7 +89,7 @@
 }
 
 /* Ensure body styling matches the theme */
-body {
+.single-recipe-page {
   background-image: url(../assets/texture-background.jpg); /* Use the wood texture */
   background-size: cover;
   background-position: center;
