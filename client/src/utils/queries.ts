@@ -1,5 +1,6 @@
 import { gql } from '@apollo/client';
 
+
 // export const QUERY_USER = gql`
 //   query user($username: String!) {
 //     user(username: $username) {
@@ -9,6 +10,8 @@ import { gql } from '@apollo/client';
    
 //     }
 //       `;
+
+
 export const QUERY_RANDOM_RECIPES = gql`
   query GetRandomRecipes {
     randomRecipes {
@@ -16,7 +19,6 @@ export const QUERY_RANDOM_RECIPES = gql`
     title
     image
   }
-
   }
 `;
 
@@ -63,6 +65,7 @@ export const QUERY_ME = gql`
 `;
 
 
+
 export const GET_USER_PROFILE = gql`
   query getUserProfile($username: String!) {
     getUserProfile(username: $username) {
@@ -71,6 +74,7 @@ export const GET_USER_PROFILE = gql`
     }
   }
 `;
+
 
 export const QUERY_RECIPE = gql`
   query Recipe($recipeId: Int) {
@@ -84,4 +88,3 @@ export const QUERY_RECIPE = gql`
     }
   }
 `;
-

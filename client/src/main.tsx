@@ -13,7 +13,6 @@ import RecipeForm from './pages/RecipeForm.js';
 import SingleRecipe from './pages/SingleRecipe.js';
 
 
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,8 +28,7 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
-
-      },
+ },
       {
         path: '/me',
         element: <Profile />
@@ -49,7 +47,6 @@ const router = createBrowserRouter([
         element: <SingleRecipe />
       }, {
         path: '/recipes',
-
         element: <RecipeForm />
       }
     ]

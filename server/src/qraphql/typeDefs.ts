@@ -6,7 +6,6 @@ const typeDefs = `
     image: String!
   }
 
-
   type User {
     _id: ID
     username: String

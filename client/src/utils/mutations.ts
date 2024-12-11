@@ -65,6 +65,7 @@ export const ADD_RECIPE = gql`
       photo
     }
   }
+
 `;
 
 export const GET_USER_PROFILE = gql`
@@ -75,4 +76,5 @@ export const GET_USER_PROFILE = gql`
     }
   }
 `;
+
 

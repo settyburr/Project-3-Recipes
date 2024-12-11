@@ -23,15 +23,21 @@ const RandomRecipes: React.FC = () => {
     }
 
     return (
-        <div className='random-recipes'>
-            {recipes.map((recipe) => (
-                <div className='recipe-card' key={recipe.id}>
-                    <Link to={`/recipes/${recipe.id}`} >
-                        <img src={recipe.image} alt={recipe.title} />
-                        <h3>{recipe.title}</h3>  
-                    </Link>
-                </div>
-            ))}
+        <div className="random-recipes">
+            <div className="discover-section">
+                <h2 className="discover-message">Discover Your New Favorite Recipe</h2>
+            </div>
+
+            <div className="recipes-grid">
+                {recipes.map((recipe) => (
+                    <div className="recipe-card" key={recipe.id}>
+                        <Link to={`/recipes/${recipe.id}`} >
+                            <img src={recipe.image} alt={recipe.title} />
+                            <h3>{recipe.title}</h3>  
+                        </Link>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 
+
 import {  QUERY_ME } from '../utils/queries';
 
 // import Auth from '../utils/auth';
@@ -16,22 +17,23 @@ const Profile = () => {
   const { loading, data } = useQuery(QUERY_ME);
 
   const user = data?.me || data?.user || {};
-  console.log(user)
+  
   // This if condition checks if the user is logged in and if the logged-in user's username matches the userParam.
+
   // if (Auth.loggedIn() && Auth.getProfile()?.data?.username === userParam) {
   //   // If the condition is true, it navigates to the "/me" route, which is likely the user's profile page.
   //   return <Navigate replace to="/me" />;
   // }
 
+  //if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    // If the condition is true, it navigates to the "/me" route, which is likely the user's profile page.
+   // return <Navigate to="/me" />;
+  //}
+
+
   if (loading) {
     return <div>Loading...</div>;
   }
-  // console.log("useParams output:", useParams());
-  // console.log("Query Data", data); //testing if the queries returns a user
-  // console.log("Is user logged in?", Auth.loggedIn()); // testing if user logged in is true or false
-  // console.log("User profile:", Auth.getProfile());
-  // console.log("User parameter:", userParam);
-  // console.log("Auth profile data:", Auth.getProfile()); //checking if auth.getProfile is failing
 
   const button = {
     backgroundColor: 'black',
