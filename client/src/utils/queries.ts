@@ -1,13 +1,14 @@
 import { gql } from '@apollo/client';
 
-export const QUERY_USER = gql`
-  query user($username: String!) {
-    user(username: $username) {
-      _id
-      username
-      email
+// export const QUERY_USER = gql`
+//   query user($username: String!) {
+//     user(username: $username) {
+//       _id
+//       username
+//       email
    
-    }
+//     }
+//       `;
 export const QUERY_RANDOM_RECIPES = gql`
   query GetRandomRecipes {
     randomRecipes {
@@ -70,7 +71,7 @@ export const GET_USER_PROFILE = gql`
     }
   }
 `;
-=======
+
 export const QUERY_RECIPE = gql`
   query Recipe($recipeId: Int) {
   recipe(recipeId: $recipeId) {

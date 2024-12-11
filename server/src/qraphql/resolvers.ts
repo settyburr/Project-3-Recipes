@@ -76,8 +76,9 @@ const resolvers = {
       return await User.findOne({ username });
     },
     
-    thoughts: async () => {
-      return await Thought.find().sort({ createdAt: -1 });
+    // thoughts: async () => {
+    //   return await Thought.find().sort({ createdAt: -1 });
+    // },
 
     users: async () => {
       return User.find().populate('recipes');
