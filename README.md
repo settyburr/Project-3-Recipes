@@ -82,7 +82,7 @@ Recipe Rack is an interactive and user-focused MERN stack application that provi
 ---
 
 ## Deployed Application
-The live application can be accessed [here](https://recipe-rack-render-url.com).
+The live application can be accessed [here](https://project-3-recipes.onrender.com).
 
 ---
 
@@ -118,8 +118,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ---
 
 ## Contact
-- Brandon Lanes - brandonlanes@gmail.com
-- Seth Burrow - 
+- Brandon Lanes - brandonlanes@gmail.com - Github username: BrandonLanes
+- Seth Burrow - sethburrow01@gmail.com - Github username: settyburr
 - Owen Gayle - owengayle19@gmail.com
 - Joshua Woods - 
 
