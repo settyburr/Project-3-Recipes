@@ -57,16 +57,9 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      recipes {
-        spoonacularId
-        title
-        image
-      }
     }
   }
 `;
-
-
 
 export const GET_USER_PROFILE = gql`
   query getUserProfile($username: String!) {
