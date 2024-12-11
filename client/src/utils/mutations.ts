@@ -70,16 +70,16 @@ export const ADD_RECIPE = gql`
 
 
 export const UPDATE_RECIPE = gql`
-  mutation UpdateRecipe($id: ID!, $input: RecipeInput!) {
-    updateRecipe(id: $id, input: $input) {
-      _id
-      title
-      ingredients
-      steps
-      category
-      photo
-    }
+  mutation updateRecipe($title: String, $updateRecipeId: String, $instructions: String, $extendedIngredients: [String], $cuisines: [String], $image: String) {
+  updateRecipe(title: $title, id: $updateRecipeId, instructions: $instructions, extendedIngredients: $extendedIngredients, cuisines: $cuisines, image: $image){
+    title
+    instructions
+    image
+    id
+    extendedIngredients
+    cuisines
   }
+}
 
 `;
 
