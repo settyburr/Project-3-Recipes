@@ -53,9 +53,9 @@ Recipe Rack is an interactive and user-focused MERN stack application that provi
    - Create a `.env` file in the root and the client directory.
    - Add the required variables for database connection and API keys.
 
-4. Start the development server:
+4. Start the application:
    ```bash
-   npm run develop
+   npm run start:dev
    ```
    This will concurrently run the front-end and back-end servers.
 
@@ -120,8 +120,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ## Contact
 - Brandon Lanes - brandonlanes@gmail.com - Github username: BrandonLanes
 - Seth Burrow - sethburrow01@gmail.com - Github username: settyburr
-- Owen Gayle - owengayle19@gmail.com
-- Joshua Woods - 
+- Owen Gayle - owengayle19@gmail.com - Github username: owengx
+- Joshua Woods - jw434846@gmail.com - Github username: Jaywoods94
 
 [Github Repository](https://github.com/settyburr/Project-3-Recipes)
 
