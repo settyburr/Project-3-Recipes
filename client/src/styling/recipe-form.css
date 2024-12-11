@@ -1,0 +1,122 @@
+/* Wrapper for the recipe form background */
+.recipe-form-border {
+    background-image: url(../assets/wooden-texture.jpg); /* Change to desired background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensure the background covers the full height of the page */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align form content to the top instead of the center */
+    padding-top: 20px; /* Push the form down slightly from the top */
+  }
+  
+  /* Wrapper for the recipe form content */
+  .recipe-form {
+    max-width: 900px;
+    margin: 40px auto;
+    background-color: #fff8f0; /* Off-white background */
+    border: 2px solid #bfa48d; /* Light wood color border */
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Soft shadow for the card */
+    color: #4d6f47; /* Dark green for text */
+    font-family: 'Arial', sans-serif;
+    margin-top: 50px; /* Adjust this margin to move the form higher on the page */
+  }
+  
+  /* Recipe form heading styling */
+  .recipe-form h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #2e7d32; /* Light green for titles */
+  }
+  
+  /* Input fields styling */
+  .recipe-form input, .recipe-form select, .recipe-form textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #bfa48d; /* Matching border color */
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 1rem;
+    color: #4d6f47; /* Dark green text */
+    box-sizing: border-box;
+    transition: border 0.3s ease;
+  }
+  
+  /* Input fields focus effect */
+  .recipe-form input:focus, .recipe-form select:focus, .recipe-form textarea:focus {
+    border-color: #2e7d32; /* Light green for focus */
+    outline: none;
+  }
+  
+  /* Buttons styling */
+  .button-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .button {
+    background-color: #5d4037; /* Dark brown */
+    color: white;
+    border-radius: 12px; /* Curved borders */
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  }
+  
+  .button:hover {
+    background-color: #3e2723; /* Darker brown */
+  }
+  
+  /* Instruction section styling */
+  .instructions {
+    text-align: center;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.7);
+    margin-top: 30px;
+    line-height: 1.6;
+    padding: 15px;
+    border-radius: 12px; /* Curved borders */
+    background-color: #f9f4ef; /* Slightly lighter tone for contrast */
+  }
+  
+  /* Tags section for ingredients or categories */
+  .tags-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .tag {
+    padding: 8px 15px;
+    background-color: #e0d6cc;
+    color: #4d6f47;
+    border-radius: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tag:hover {
+    background-color: #bfa48d; /* Light brown when hovered */
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: red;
+    font-size: 1rem;
+    text-align: center;
+    margin-top: 10px;
+  }

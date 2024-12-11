@@ -71,13 +71,13 @@ Recipe Rack is an interactive and user-focused MERN stack application that provi
 
 ## Screenshots
 ### Homepage
-![Homepage displaying random recipes](path/to/screenshot-homepage.png)
+![Homepage displaying random recipes](./client/src/assets/screenshot-home.png)
 
 ### Recipe Details
-![Recipe details page](path/to/screenshot-recipe-details.png)
+![Recipe details page](./client/src/assets/screenshot-details.png)
 
-### Saved Recipes
-![Saved recipes management page](path/to/screenshot-saved-recipes.png)
+### Recipe Form
+![Recipe form page](./client/src/assets/screenshot-addnew.png)
 
 ---
 

@@ -1,5 +1,5 @@
 import axios from "axios";
-const apiKey = "43cf289d109f4dba88c16d789ab27720";
+const apiKey = "2bb2337ad41d463381c0f1111beb29a1";
 
 async function getRandomRecipe(numberOfRecipes: number) {
   try {
