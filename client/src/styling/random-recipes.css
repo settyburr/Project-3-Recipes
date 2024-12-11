@@ -1,0 +1,56 @@
+/* RandomRecipes.css */
+
+/* Wrapper for all recipes */
+.random-recipes {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    background-color: #f0f8f0;  /* light green background */
+    border-radius: 10px;
+  }
+  
+  /* Styling for individual recipe cards */
+  .recipe-card {
+    background-color: #fff8f0;  /* off-white wood tone background */
+    border: 2px solid #bfa48d;  /* light wood color border */
+    border-radius: 8px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* soft shadow */
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .recipe-card:hover {
+    transform: scale(1.05);  /* Slight scaling on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);  /* Slightly larger shadow */
+  }
+  
+  /* Image styling */
+  .recipe-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  /* Title styling */
+  .recipe-card h3 {
+    font-size: 1.2rem;
+    color: #4d6f47;  /* dark green for the text */
+    font-weight: 600;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Link styling */
+  .recipe-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .recipe-card a:hover {
+    color: #6c8c6b; /* Darker green when hovering over the link */
+  }
