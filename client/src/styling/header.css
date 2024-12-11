@@ -50,8 +50,7 @@
 }
 
 .btn-logout:hover {
-  background-color: #ff5722; /* Darker red tone on hover */
-  transform: scale(1.05); /* Optional: Adds a slight zoom effect on hover */
+  background-color: #ff5722;
 }
 
 .btn-recipe-form {

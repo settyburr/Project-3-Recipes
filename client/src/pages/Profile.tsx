@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
-import '../styling/profile.css';
-import { QUERY_ME } from '../utils/queries';
-
 import {  QUERY_ME } from '../utils/queries';
 
 // import Auth from '../utils/auth';
 
-
 const Profile = () => {
+  // const { username: userParam } = useParams();
+
+  // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+  //   variables: { username: userParam },
+  // });
+
   const { loading, data } = useQuery(QUERY_ME);
+
   const user = data?.me || data?.user || {};
-
-
   
   // This if condition checks if the user is logged in and if the logged-in user's username matches the userParam.
 
@@ -29,30 +29,9 @@ const Profile = () => {
 
 console.log(user) //console logging to return user data
 
-
   if (loading) {
     return <div>Loading...</div>;
   }
-
-
-  if (!user?.me) {
-    return (
-      <div className="profile-page-border">
-        <div className="profile-page">
-          <h1>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              {user.username}
-            </div>
-            <img src="/images/verified.jpg" className="verified-badge" />
-          </h1>
-          <p><strong>Email:</strong> {user.email || 'Email not provided'}</p>
-
-          <img src="/images/rat2.jpg" className="profile-image" />
-
-          <div className="button-container">
-            <button className="button">Follow</button>
-            <button className="button">Message</button>
-          </div>
 
   const button = {
     backgroundColor: 'black',
@@ -132,29 +111,15 @@ console.log(user) //console logging to return user data
         </div>
 
 
-          <div className="followers-container">
-            <p>500 Following</p>
-            <p>10k Followers</p>
-          </div>
-
-          <div className="cooking-philosophy">
-          Anyone can cook!
-          Cooking and discovering new recipes bring me a sense of joy and fulfillment. There's something incredibly satisfying about experimenting with ingredients, trying new flavors, and creating a dish from scratch. Each recipe is an opportunity to learn and express creativity in the kitchen. The process of preparing a meal, whether simple or complex, allows me to unwind, focus, and connect with my senses. Ultimately, the happiness comes not just from the delicious results, but from the experience of cooking and sharing it with others.
-          </div>
-
-          <div className="favorite-recipes">
-            <h2>Favorite Recipes</h2>
-            <ul>
-              <li><Link to="/">Cajun Pasta 🍴</Link></li>
-              <li><Link to="/">Spaghetti Carbonara 🍴</Link></li>
-              <li><Link to="/">Pizza Margherita 🍴</Link></li>
-              <li><Link to="/">Pad Thai 🍴</Link></li>
-              <li><Link to="/">Gumbo 🍴</Link></li>
-              <li><Link to="/">Garfield Lasagna 🍴</Link></li>
-            </ul>
-          </div>
+        <div style={buttonContainer}>
+          <button style={button}>Follow</button>
+          <button style={button}>Message</button>
         </div>
 
+        <div style={followersContainer}>
+          <p>500 Following</p>
+          <p>10k Followers</p>
+        </div>
         <h1 style={cook}>Anyone can cook!
           Cooking and discovering new recipes bring me a sense of joy and fulfillment. There's something incredibly satisfying about experimenting with ingredients, trying new flavors, and creating a dish from scratch. Each recipe is an opportunity to learn and express creativity in the kitchen. The process of preparing a meal, whether simple or complex, allows me to unwind, focus, and connect with my senses. Ultimately, the happiness comes not just from the delicious results, but from the experience of cooking and sharing it with others.</h1>
 
@@ -180,12 +145,11 @@ console.log(user) //console logging to return user data
             <Link to = "/">Garfield Lasagna 🍴</Link>
             </li>
         </ul>
-
       </div>
+
     );
   }
 
-  return null; // In case there's no valid user data
 };
 
 export default Profile;
