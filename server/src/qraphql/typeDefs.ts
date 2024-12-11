@@ -54,7 +54,7 @@ const typeDefs = `
     addUser(input: UserInput!): Auth
     login(email: String!, password: String!): Auth
     addRecipe(input: AddRecipeInput!): Recipe
-    
+    updateRecipe(title: String, instructions: String, extendedIngredients: [String], cuisines: [String], image: String, id: String): Recipe
   }
 `;
 
