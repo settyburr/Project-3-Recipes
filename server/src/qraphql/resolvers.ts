@@ -25,10 +25,11 @@ interface UserArgs {
 
 interface AddRecipeInput {
   title: string;
-  ingredients: string[];
-  steps: string[];
-  category: string;
-  photo?: string;
+  instructions: string[];
+  extendedIngredients: string[];
+  cuisines: string;
+  image?: string;
+  
 }
 
 const resolvers = {
@@ -100,6 +101,7 @@ const resolvers = {
   Mutation: {
   
     addRecipe: async (_parent: any, { input }: { input: AddRecipeInput }, context: any) => {
+      console.log("Add recipe running")
       // Check if the user is authenticated
       if (!context.user) {
         throw new AuthenticationError("You must be logged in to add a recipe.");
@@ -107,14 +109,15 @@ const resolvers = {
 
       try {
         // Create a new recipe document
+        console.log("input", input)
         const newRecipe = new Recipe({
           ...input,
           userId: context.user.id, // Associate the recipe with the logged-in user
         });
-
+        console.log(newRecipe)
         // Save the recipe to the database
         const savedRecipe = await newRecipe.save();
-
+        console.log(savedRecipe)
         return savedRecipe;
       } catch (error) {
         console.error("Error adding recipe:", error);

@@ -25,13 +25,15 @@ export const QUERY_RANDOM_RECIPES = gql`
 export const GET_RECIPES = gql`
   query getRecipes {
     recipes {
-    title
-    steps
-    photo
-    ingredients
-    category
-  }
+      title
+      instructions
+      image
+      extendedIngredients
+      cuisines
+      id
+    }
 }
+
 `;
 
 export const QUERY_USER = gql`

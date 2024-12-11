@@ -59,6 +59,21 @@ export const ADD_RECIPE = gql`
   mutation AddRecipe($input: AddRecipeInput!) {
     addRecipe(input: $input) {
       title
+      instructions
+      image
+      extendedIngredients
+      cuisines
+      id
+    }
+  }
+`;
+
+
+export const UPDATE_RECIPE = gql`
+  mutation UpdateRecipe($id: ID!, $input: RecipeInput!) {
+    updateRecipe(id: $id, input: $input) {
+      _id
+      title
       ingredients
       steps
       category
