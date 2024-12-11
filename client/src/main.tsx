@@ -33,11 +33,6 @@ const router = createBrowserRouter([
         path: '/me',
         element: <Profile />
       },
-      
-      // {
-      //   path: '/random',
-      //   element: <Random /> 
-      // },
        {
         path: '/recipe',
         element: <RecipeForm />

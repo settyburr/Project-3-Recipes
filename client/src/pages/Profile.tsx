@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 
@@ -13,7 +13,7 @@ const Profile = () => {
   //   variables: { username: userParam },
   // });
 
-  const { loading, data } = useQuery( QUERY_ME);
+  const { loading, data } = useQuery(QUERY_ME);
 
   const user = data?.me || data?.user || {};
   console.log(user)
@@ -59,58 +59,49 @@ const Profile = () => {
     textAlign: 'center',
     marginTop: '100px'
   }
-const cook = {
-  fontSize: '15px',
-  color: 'rgba(0, 0, 0, 0.5)'
-}
-const food ={
-listStyleType: 'none',
-  fontSize: '30px',
-  textAlign: 'center',
-  marginTop: '50px'
-}
-const imageStyle = {
-  width: '200px',        
-  height: '200px',       
-  borderRadius: '50%',  
-  border: '3px solid #000', 
-  marginBottom: '50px',
-  margintop: '20px'
-}
-const imageWrapperStyle = {
-  display: 'flex',         
-  alignItems: 'center',    
-  gap: '10px',             
-}
-const verified = {
-  width: '50px',         
-  height: '50px',        
-};
-// const bannerStyle = {
-//   width: '100vw',             
-//   height: '200px',          
-//   // backgroundImage: 'url(/images/banner.jpg)', 
-//   backgroundColor: 'blue',
-//   backgroundSize: 'cover',  
-//   backgroundPosition: 'center', 
-//   margin: '0px',      
-// };
+  const cook = {
+    fontSize: '15px',
+    color: 'rgba(0, 0, 0, 0.5)'
+  }
+  const food = {
+    listStyleType: 'none',
+    fontSize: '30px',
+    textAlign: 'center',
+    marginTop: '50px'
+  }
+  const imageStyle = {
+    width: '200px',
+    height: '200px',
+    borderRadius: '50%',
+    border: '3px solid #000',
+    marginBottom: '50px',
+    margintop: '20px'
+  }
+  const imageWrapperStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '10px',
+  }
+  const verified = {
+    width: '50px',
+    height: '50px',
+  };
+
   if (!user?.me) {
     return (
-      // <div style = {bannerStyle}>
       <div>
         <h1>
-        <div style = {imageWrapperStyle}>
-       {user.username}
-        </div>
-        <img src = "/images/verified.jpg" style ={verified} />
-        
+          <div style={imageWrapperStyle}>
+            {user.username}
+          </div>
+          <img src="/images/verified.jpg" style={verified} />
+
         </h1>
         <p><strong>Email:</strong> {user.email || 'Email not provided'}</p>
-     
-       <img src ="/images/rat2.jpg" style = {imageStyle} />
-   
-      
+
+        <img src="/images/rat2.jpg" style={imageStyle} />
+
+
         <div style={buttonContainer}>
           <button style={button}>Follow</button>
           <button style={button}>Message</button>
@@ -120,18 +111,31 @@ const verified = {
           <p>500 Following</p>
           <p>10k Followers</p>
         </div>
-        <h1 style = {cook}>Anyone can cook! 
-        Cooking and discovering new recipes bring me a sense of joy and fulfillment. There's something incredibly satisfying about experimenting with ingredients, trying new flavors, and creating a dish from scratch. Each recipe is an opportunity to learn and express creativity in the kitchen. The process of preparing a meal, whether simple or complex, allows me to unwind, focus, and connect with my senses. Ultimately, the happiness comes not just from the delicious results, but from the experience of cooking and sharing it with others.</h1>
+        <h1 style={cook}>Anyone can cook!
+          Cooking and discovering new recipes bring me a sense of joy and fulfillment. There's something incredibly satisfying about experimenting with ingredients, trying new flavors, and creating a dish from scratch. Each recipe is an opportunity to learn and express creativity in the kitchen. The process of preparing a meal, whether simple or complex, allows me to unwind, focus, and connect with my senses. Ultimately, the happiness comes not just from the delicious results, but from the experience of cooking and sharing it with others.</h1>
 
-        <h2 style= {recipe} >You can check out some of our favorite recipes here!</h2>
-      
-        <li style = {food}>Cajun Pasta 🍴</li>
-        <li style = {food}>Spaghetti Carbonara 🍴</li>
-        <li style = {food}>Pizza Margherita 🍴</li>
-        <li style = {food}>Pad Thai 🍴</li>
-        <li style = {food}>Gumbo 🍴</li>
-        <li style = {food}>Garfield Lasagna 🍴</li>
-       
+        <h2 style={recipe} >You can check out some of our favorite recipes here!</h2>
+
+        <ul>
+          <li style={food}>
+            <Link to="/">Cajun Pasta 🍴</Link>
+          </li>
+          <li style={food}>
+            <Link to="/">Spaghetti Carbonara 🍴</Link>
+          </li>
+          <li style={food}>
+            <Link to ="/" >Pizza Margherita 🍴</Link>
+            </li>
+          <li style={food}>
+           <Link to = "/"> Pad Thai 🍴</Link>
+            </li>
+          <li style={food}>
+            <Link to ="/">Gumbo 🍴</Link>
+            </li>
+          <li style={food}>
+            <Link to = "/">Garfield Lasagna 🍴</Link>
+            </li>
+        </ul>
       </div>
 
     );
