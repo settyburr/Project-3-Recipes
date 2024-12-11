@@ -16,7 +16,7 @@ const Header = () => {
           <Link className="text-light" to="/">
             <h1 className="m-0">Recipe Rack</h1>
           </Link>
-          <p className="m-0">LETS GET COOKIN!!</p>
+          <p className="m-0">LET'S GET COOKIN!!</p>
         </div>
         <div>
           {/* Checking if the user is logged in to conditionally render profile link and logout button */}

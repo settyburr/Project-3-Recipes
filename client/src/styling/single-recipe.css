@@ -1,73 +1,98 @@
-/* SingleRecipe.css */
+/* Wrapper for the single recipe content */
 .single-recipe {
-    background-color: #f9f8f2; /* Light cream background */
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 2rem auto;
-  }
-  
-  .single-recipe h1 {
-    font-size: 2.5rem;
-    color: #2f4f2f; /* Dark green color */
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-  
-  .single-recipe img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 1.5rem 0;
-  }
-  
-  .single-recipe h2 {
-    font-size: 1.8rem;
-    color: #6a4e23; /* Wood brown color */
-    margin-bottom: 0.5rem;
-  }
-  
-  .single-recipe ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .single-recipe ul li {
-    font-size: 1.1rem;
-    color: #333;
-    padding-left: 1.5rem;
-    position: relative;
-    margin-bottom: 0.5rem;
-  }
-  
-  .single-recipe ul li::before {
-    content: '✔️';
-    position: absolute;
-    left: 0;
-    color: #8fbc8f; /* Light green color for checkmark */
-  }
-  
-  .single-recipe p {
-    font-size: 1.1rem;
-    color: #555;
-    line-height: 1.5;
-  }
-  
-  .single-recipe .no-recipe-message {
-    background-color: #f8d7da;
-    padding: 1rem;
-    border-radius: 5px;
-    border: 1px solid #f5c6cb;
-    color: #721c24;
-    text-align: center;
-  }
+  max-width: 800px;
+  margin: 40px auto; /* Center the content */
+  background-color: #fff8f0; /* Off-white wood tone background */
+  border: 2px solid #bfa48d; /* Light wood color border */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Soft shadow for the card */
+  color: #4d6f47; /* Dark green for text */
+  font-family: 'Arial', sans-serif; /* Clean and modern font */
+}
 
- .single-recipe {
-    background-image: url('https://www.freepik.com/free-photo/texture-background_1167481.htm#fromView=search&page=1&position=21&uuid=d24284fe-6aa0-474e-967e-d0923541d141'); /* Use the path to your wood texture image */
-    background-size: cover; /* Ensures the image covers the entire screen */
-    background-position: center; /* Centers the image */
-    background-attachment: fixed; /* Keeps the background fixed while scrolling */
-    background-repeat: no-repeat; /* Prevents repeating the image */
-  }
+/* Recipe title styling */
+.single-recipe h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2e7d32; /* Light green for titles */
+}
+
+/* Recipe image styling */
+.single-recipe img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border: 2px solid #bfa48d; /* Add border matching the theme */
+}
+
+/* Ingredients and cuisines section styling */
+.ingredients,
+.cuisines {
+  margin: 20px 0;
+}
+
+.ingredients h2,
+.cuisines h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+  border-bottom: 2px solid #bfa48d; /* Light wood underline */
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.ingredients ul,
+.cuisines ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.ingredients li,
+.cuisines li {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 5px 0;
+}
+
+/* Instructions section styling */
+.instructions {
+  margin-top: 30px;
+}
+
+.instructions h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+  border-bottom: 2px solid #bfa48d;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.instructions p {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* No parameter message styling */
+.no-recipe-message {
+  text-align: center;
+  color: #b71c1c; /* Red to indicate an error or missing data */
+  background-color: #fff5f5; /* Light red background for emphasis */
+  border: 1px solid #ffcccc;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+/* Ensure body styling matches the theme */
+body {
+  background-image: url(../assets/texture-background.jpg); /* Use the wood texture */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
