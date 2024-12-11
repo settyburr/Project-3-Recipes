@@ -1,8 +1,5 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
-
-
 import {  QUERY_ME } from '../utils/queries';
 
 // import Auth from '../utils/auth';
@@ -30,6 +27,7 @@ const Profile = () => {
    // return <Navigate to="/me" />;
   //}
 
+console.log(user) //console logging to return user data
 
   if (loading) {
     return <div>Loading...</div>;
@@ -59,11 +57,17 @@ const Profile = () => {
   };
   const recipe = {
     textAlign: 'center' as "center",
-    marginTop: '100px'
+    marginTop: '100px',
+    fontFamily: 'Bungee Spice'
   }
   const cook = {
     fontSize: '15px',
-    color: 'rgba(0, 0, 0, 0.5)'
+    color: 'rgba(0, 0, 0, 0.5)',
+    border: '3px solid black', 
+    padding: '30px',           
+    margin: '20px',            
+    borderRadius: '20px',       
+    fontFamily: 'Arial',        
   }
   const food = {
     listStyleType: 'none',
@@ -79,11 +83,6 @@ const Profile = () => {
     marginBottom: '50px',
     margintop: '20px'
   }
-  const imageWrapperStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '10px',
-  }
   const verified = {
     width: '50px',
     height: '50px',
@@ -93,15 +92,23 @@ const Profile = () => {
     return (
       <div>
         <h1>
-          <div style={imageWrapperStyle}>
+        <div style={{display: 'flex', alignItems: 'center'}}>
             {user.username}
-          </div>
+          <div style={{ marginLeft: '20px' }}>
           <img src="/images/verified.jpg" style={verified} />
+          </div>
+          </div>
 
         </h1>
         <p><strong>Email:</strong> {user.email || 'Email not provided'}</p>
 
+        <div style={{ display: 'flex', alignItems: 'center' }}>
         <img src="/images/rat2.jpg" style={imageStyle} />
+        <div style={{ marginLeft: '20px' }}>
+        <p>CHEF RATING</p>
+        <p>&#11088;&#11088;&#11088;&#11088;&#11088;</p>
+        </div>
+        </div>
 
 
         <div style={buttonContainer}>
@@ -118,9 +125,9 @@ const Profile = () => {
 
         <h2 style={recipe} >You can check out some of our favorite recipes here!</h2>
 
-        <ul>
+        <ul> 
           <li style={food}>
-            <Link to="/">Cajun Pasta 🍴</Link>
+            <Link to="/">Cajun Pasta 🍴</Link> 
           </li>
           <li style={food}>
             <Link to="/">Spaghetti Carbonara 🍴</Link>
