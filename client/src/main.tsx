@@ -7,7 +7,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 // import SingleThought from './pages/SingleThought';
-// import Profile from './pages/Profile';
+import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
 import RecipeForm from './pages/RecipeForm.js';
 import SingleRecipe from './pages/SingleRecipe.js';
@@ -28,6 +28,14 @@ const router = createBrowserRouter([
       }, {
         path: '/signup',
         element: <Signup />
+ },
+      {
+        path: '/me',
+        element: <Profile />
+      },
+       {
+        path: '/recipe',
+
       }, {
         // path: '/profiles/:username',
         // element: <Profile />

@@ -80,4 +80,16 @@ export const UPDATE_RECIPE = gql`
       photo
     }
   }
+
 `;
+
+export const GET_USER_PROFILE = gql`
+  query getUserProfile($username: String!) {
+    user(username: $username) {
+      username
+      email
+    }
+  }
+`;
+
+

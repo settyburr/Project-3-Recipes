@@ -24,6 +24,11 @@
     "wait-on": "^7.2.0"
   },
   "dependencies": {
+
+
+    "seed": "^0.4.4",
+
+
     "mongodb": "^6.11.0",
     "spoonacular": "^2.0.1"
   }
