@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import ErrorPage from './pages/Error';
 import RecipeForm from './pages/RecipeForm.js';
+import SingleRecipe from './pages/SingleRecipe.js';
 
 
 

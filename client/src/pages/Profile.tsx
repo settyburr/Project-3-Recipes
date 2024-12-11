@@ -1,10 +1,10 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 
-import { QUERY_USER, QUERY_ME } from '../utils/queries';
+import {  QUERY_ME } from '../utils/queries';
 
-import Auth from '../utils/auth';
+// import Auth from '../utils/auth';
 
 const Profile = () => {
   // const { username: userParam } = useParams();
@@ -56,7 +56,7 @@ const Profile = () => {
     gap: '20px'
   };
   const recipe = {
-    textAlign: 'center',
+    textAlign: 'center' as "center",
     marginTop: '100px'
   }
   const cook = {
@@ -66,7 +66,7 @@ const Profile = () => {
   const food = {
     listStyleType: 'none',
     fontSize: '30px',
-    textAlign: 'center',
+    textAlign: 'center' as "center",
     marginTop: '50px'
   }
   const imageStyle = {

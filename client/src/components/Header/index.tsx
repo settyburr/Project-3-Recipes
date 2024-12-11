@@ -32,9 +32,6 @@ const Header = () => {
               <Link className="btn btn-lg btn-recipe-form m-2" to="/recipes">
                 Recipe Form 
               </Link>
-              <Link className="btn btn-lg btn-success m-2" to="Home">
-                Home
-              </Link>
             </>
           ) : (
             <>
@@ -43,9 +40,6 @@ const Header = () => {
               </Link>
               <Link className="btn btn-lg btn-signup m-2" to="/signup">
                 Signup
-              </Link>
-              <Link className="btn btn-lg btn-success m-2" to="/">
-                Home
               </Link>
             </>
           )}

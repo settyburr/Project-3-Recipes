@@ -1,10 +1,5 @@
 const typeDefs = `
 
-type Query {
-getUserProfile(username: String!): User
-}
-
-
   type Recipe {
     id: ID
     title: String!
@@ -53,8 +48,6 @@ getUserProfile(username: String!): User
     users: [User]
     user(username: String!): User
     getUserProfile(username: String!): User
-    thoughts: [Thought]!
-    thought(thoughtId: ID!): Thought
     me: User
   }
 
