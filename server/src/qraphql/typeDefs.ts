@@ -46,6 +46,7 @@ const typeDefs = `
     recipe(recipeId: Int): Recipe
     users: [User]
     user(username: String!): User
+    getUserProfile(username: String!): User
     me: User
   }
 
