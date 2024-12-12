@@ -5,6 +5,20 @@ import { GET_RECIPES } from "../utils/queries";
 import { useNavigate } from "react-router-dom";
 import '../styling/recipe-form.css';
 
+interface ExistingRecipes  {
+  title: string,
+  ingredients: string,
+  steps: string,
+  category: string,
+  photo: string,
+  recipes: any
+}
+
+interface GetRecipesData  {
+  recipes: ExistingRecipes[]
+}
+
+
 const RecipeForm = () => {
   const [formState, setFormState] = useState({
     title: "",
@@ -13,6 +27,8 @@ const RecipeForm = () => {
     category: "",
     photo: "",
   });
+
+
   const [editingRecipeId, setEditingRecipeId] = useState<string | null>(null);
   
   const { loading, error, data } = useQuery(GET_RECIPES);
@@ -21,7 +37,7 @@ const RecipeForm = () => {
   });
   const [updateRecipe] = useMutation(UPDATE_RECIPE, {
     update(cache, { data: { updateRecipe } }) {
-      const existingRecipes = cache.readQuery({ query: GET_RECIPES });
+      const existingRecipes = cache.readQuery<GetRecipesData>({ query: GET_RECIPES });
       if (existingRecipes && updateRecipe) {
         const updatedRecipes = existingRecipes.recipes.map((recipe: any) =>
           recipe.id === updateRecipe.id ? updateRecipe : recipe
@@ -35,7 +51,7 @@ const RecipeForm = () => {
   });
   const [deleteRecipe] = useMutation(DELETE_RECIPE, {
     update(cache, { data: { deleteRecipe } }) {
-      const existingRecipes = cache.readQuery({ query: GET_RECIPES });
+      const existingRecipes = cache.readQuery<GetRecipesData>({ query: GET_RECIPES });
       if (existingRecipes && deleteRecipe) {
         const updatedRecipes = existingRecipes.recipes.filter(
           (recipe: any) => recipe.id !== deleteRecipe.id
