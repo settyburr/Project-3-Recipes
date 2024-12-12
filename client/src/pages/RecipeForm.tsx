@@ -14,7 +14,7 @@ const RecipeForm = () => {
     photo: "",
   });
   const [editingRecipeId, setEditingRecipeId] = useState<string | null>(null);
-
+  
   const { loading, error, data } = useQuery(GET_RECIPES);
   const [addRecipe] = useMutation(ADD_RECIPE, {
     refetchQueries: [GET_RECIPES],

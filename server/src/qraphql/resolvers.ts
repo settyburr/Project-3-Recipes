@@ -41,18 +41,7 @@ interface updateRecipeArgs {
   id: string
 }
 
-interface Recipe {
-  id: string;
-  title: string;
-  instructions: string;
-  image: string;
-  extendedIngredients: string[];
-  cuisines: string[];
-}
 
-// interface GetRecipesData {
-//   recipes: Recipe[];
-// }
 
 
 const resolvers = {
