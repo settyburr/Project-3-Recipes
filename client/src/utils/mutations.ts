@@ -92,4 +92,12 @@ export const GET_USER_PROFILE = gql`
   }
 `;
 
+export const DELETE_RECIPE = gql`
+  mutation DeleteRecipe($id: ID!) {
+    deleteRecipe(id: $id) {
+      id
+    }
+  }
+`;
+
 

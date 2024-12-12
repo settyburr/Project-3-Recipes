@@ -1,7 +1,7 @@
 import { useState, type FormEvent, type ChangeEvent, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { ADD_RECIPE, UPDATE_RECIPE } from "../utils/mutations"; // Import the mutation for updating a recipe
-import { GET_RECIPES } from "../utils/queries"; // Import the query for getting all recipes
+import { ADD_RECIPE, UPDATE_RECIPE, DELETE_RECIPE } from "../utils/mutations";
+import { GET_RECIPES } from "../utils/queries";
 import { useNavigate } from "react-router-dom";
 import '../styling/recipe-form.css';
 
@@ -16,13 +16,38 @@ const RecipeForm = () => {
   const [editingRecipeId, setEditingRecipeId] = useState<string | null>(null);
 
   const { loading, error, data } = useQuery(GET_RECIPES);
-  console.log(loading, error, data);
   const [addRecipe] = useMutation(ADD_RECIPE, {
     refetchQueries: [GET_RECIPES],
   });
   const [updateRecipe] = useMutation(UPDATE_RECIPE, {
-    refetchQueries: [GET_RECIPES],
+    update(cache, { data: { updateRecipe } }) {
+      const existingRecipes = cache.readQuery({ query: GET_RECIPES });
+      if (existingRecipes && updateRecipe) {
+        const updatedRecipes = existingRecipes.recipes.map((recipe: any) =>
+          recipe.id === updateRecipe.id ? updateRecipe : recipe
+        );
+        cache.writeQuery({
+          query: GET_RECIPES,
+          data: { recipes: updatedRecipes },
+        });
+      }
+    },
   });
+  const [deleteRecipe] = useMutation(DELETE_RECIPE, {
+    update(cache, { data: { deleteRecipe } }) {
+      const existingRecipes = cache.readQuery({ query: GET_RECIPES });
+      if (existingRecipes && deleteRecipe) {
+        const updatedRecipes = existingRecipes.recipes.filter(
+          (recipe: any) => recipe.id !== deleteRecipe.id
+        );
+        cache.writeQuery({
+          query: GET_RECIPES,
+          data: { recipes: updatedRecipes },
+        });
+      }
+    },
+  });
+
   const navigate = useNavigate();
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -38,22 +63,18 @@ const RecipeForm = () => {
 
     try {
       if (editingRecipeId) {
-        console.log("Panda")
-        // Update existing recipe
         await updateRecipe({
-          variables: { 
-              id: editingRecipeId,
-              title: formState.title,
-              extendedIngredients: formState.ingredients.split(","),
-              instructions: formState.steps,
-              cuisines: formState.category,
-              image: formState.photo
+          variables: {
+            updateRecipeId: editingRecipeId,
+            title: formState.title,
+            extendedIngredients: formState.ingredients.split(","),
+            instructions: formState.steps,
+            cuisines: formState.category.split(","),
+            image: formState.photo,
           },
         });
         setEditingRecipeId(null);
       } else {
-        // Add new recipe
-        console.log(formState);
         await addRecipe({
           variables: {
             input: {
@@ -66,15 +87,29 @@ const RecipeForm = () => {
           },
         });
       }
-
-      // setFormState({
-      //   title: "",
-      //   ingredients: "",
-      //   steps: "",
-      //   category: "",
-      //   photo: "",
-      // });
       navigate("/recipes");
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleEditClick = (recipe: any) => {
+    const selectedId = recipe.id;
+    setEditingRecipeId(selectedId);
+    setFormState({
+      title: recipe.title,
+      ingredients: recipe.extendedIngredients.join(","),
+      steps: recipe.instructions,
+      category: recipe.cuisines.join(","),
+      photo: recipe.image || "",
+    });
+  };
+
+  const handleDeleteClick = async (recipeId: string) => {
+    try {
+      await deleteRecipe({
+        variables: { id: recipeId },
+      });
     } catch (e) {
       console.error(e);
     }
@@ -82,22 +117,7 @@ const RecipeForm = () => {
 
   useEffect(() => {
     console.log("Editing Recipe ID:", editingRecipeId);
-    console.log(formState)
-  }, [formState, editingRecipeId]);
-  
-
-  const handleEditClick = (recipe: any) => {
-    console.log(recipe);
-    const selectedId = recipe.id;
-    setEditingRecipeId(selectedId);
-    setFormState({
-      title: recipe.title,
-      ingredients: recipe.extendedIngredients.join(","),
-      steps: recipe.instructions,
-      category: recipe.cuisines,
-      photo: recipe.image || "",
-    });
-  };
+  }, [editingRecipeId]);
 
   return (
     <main className="recipe-form-border">
@@ -151,7 +171,6 @@ const RecipeForm = () => {
           </button>
         </form>
 
-        {/* Table to display all recipes */}
         <h4 className="mt-4">Your Recipes</h4>
         {loading ? (
           <p>Loading recipes...</p>
@@ -184,11 +203,15 @@ const RecipeForm = () => {
                     )}
                   </td>
                   <td>
+                    <button className="button" onClick={() => handleEditClick(recipe)}>
+                      Edit
+                    </button>
                     <button
                       className="button"
-                      onClick={() => handleEditClick(recipe)}
+                      style={{ marginLeft: "10px", backgroundColor: "red", color: "white" }}
+                      onClick={() => handleDeleteClick(recipe.id)}
                     >
-                      Edit
+                      Delete
                     </button>
                   </td>
                 </tr>
