@@ -35,12 +35,12 @@ const Profile = () => {
           <div className="favorite-recipes">
             <h2>Favorite Recipes</h2>
             <ul>
-              <li><Link to="/">Cajun Pasta :fork_and_knife:</Link></li>
-              <li><Link to="/">Spaghetti Carbonara :fork_and_knife:</Link></li>
-              <li><Link to="/">Pizza Margherita :fork_and_knife:</Link></li>
-              <li><Link to="/">Pad Thai :fork_and_knife:</Link></li>
-              <li><Link to="/">Gumbo :fork_and_knife:</Link></li>
-              <li><Link to="/">Garfield Lasagna :fork_and_knife:</Link></li>
+              <li><Link to="/recipes/634486">BBQ Beef Brisket 🍴</Link></li>
+              <li><Link to="/recipes/716330">Chicken and Mango Skewer 🍴</Link></li>
+              <li><Link to="/recipes/665041">Watermelon, Feta and Mint Salad 🍴</Link></li>
+              <li><Link to="/recipes/651341">Meatball Sliders 🍴</Link></li>
+              <li><Link to="/recipes/640634">Creamy Curry Chicken With Yellow Rice 🍴</Link></li>
+              <li><Link to="/recipes/642719">Fettuccine With Bacon Mushroom and Peas 🍴</Link></li>
             </ul>
           </div>
         </div>
