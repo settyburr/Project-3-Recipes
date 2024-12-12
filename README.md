@@ -90,6 +90,9 @@ The live application can be accessed [here](https://project-3-recipes.onrender.c
 We aim to enhance Recipe Rack with the following features:
 - **Recipe Ratings**: Allow users to rate recipes on a 5-star system to provide feedback and help others choose the best recipes.
 - **Comment Section**: Implement a comment section on recipe cards so users can discuss recipes and share adjustments tailored to their tastes.
+- **Search Functionality**: Add a search bar on the homepage to allow users to find specific recipes quickly.
+- **Integration of Recipe Form and Profile**: Saved recipes from the Recipe Form page will automatically appear under "Favorite Recipes" on the Profile page.
+- **Single Recipe Saving**: Enable users to save recipes from the Single Recipe page, which will then be added to their "Favorite Recipes" section on the Profile page.
 
 ---
 
